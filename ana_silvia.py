@@ -120,6 +120,6 @@ grants = visualizechart()
 st.write(grants)
 
 option = st.selectbox('Choose an Activity', df3['activityType'].unique())
-st.bar_chart(grants[('ecContribution', 'sum')][option])  # Access the multi-level index using a tuple
+st.bar_chart(grants[('ecContribution')][option])  # Access the multi-level index using a tuple
 
 conn.close()
