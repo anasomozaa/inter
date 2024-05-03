@@ -61,12 +61,13 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
     df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
+    df2_part = df2_part.reset_index()
     df2_part = df2_part.sort_values(by=('ecContribution', 'sum'), ascending= False) #sorting by sum of ecContribution in descending order
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
 ##print(participants)
-st.write(participants)
+st.write(participants, index=False)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
 st.header('Number of Project Coordinators Table for the Country Selected')
@@ -79,7 +80,5 @@ pjc_df = pjc_df.reset_index()
 pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
 st.write(pjc_df, index=False)
-#st.write('Project coordinators from', countame)
-#st.write(project_coordinators_df)
 
 conn.close()
