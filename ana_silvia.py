@@ -93,7 +93,7 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 #Display a graph with evolution of received grants of the partners in a coutry according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
 df3 = df2[df2['Acronym'] == acronym_c]
-df3['year']= pd.to_datetime(df2['startDate']).dt.year
+df3['year']= pd.to_datetime(df3['startDate']).dt.year
 df_grants = df3.groupby(['year', 'activityType'])['ecContribution'].sum()
 st.bar_chart(df_grants)
 conn.close()
