@@ -12,7 +12,7 @@ import numpy as np
 import sqlite3
 from sqlite3 import connect
 import streamlit as st
-import plotly.express as px
+
 
 conn= connect('ecsel_database.db')
 
@@ -90,11 +90,7 @@ def convert_projectcoordinators(pjc_df):
 st.download_button(label="Project Coordinators CSV",data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv',)
 """Optional"""
 #Display a graph with evolution of received grants of the partners in a coutry according to their activityType.
-df2 = df2[df2['Acronym'] == acronym_c]
-grants = df2_part.groupby('activityType').agg(sum)
-df = px.data.grants()
-fig = px.bar(df, x="partners", y="contribution", color="species")
-fig.show()
+
 
 
 
