@@ -13,6 +13,8 @@ import sqlite3
 from sqlite3 import connect
 import streamlit as st
 
+image = Image.open('Logo-KDT-JU.webp')
+st.image(image)
 
 conn= connect('ecsel_database.db')
 
