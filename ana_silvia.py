@@ -97,7 +97,7 @@ df3 = df2[df2['Acronym'] == acronym_c]
 df3['year']= pd.to_datetime(df3['startDate']).dt.year
 df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
 
-@st.cache
+'''@st.cache
 def visualizechart():
     df3 = df2[df2['Acronym'] == acronym_c]
     df3['year']= pd.to_datetime(df3['startDate']).dt.year
@@ -108,5 +108,18 @@ grants = visualizechart()
 st.write(grants)
 
 option = st.selectbox('Choose an Activity', df3['activityType'].unique())
-st.bar_chart(grants['ecContribution', 'sum'][option])
+st.bar_chart(grants[('ecContribution', 'sum')][option]) '''
+@st.cache
+def visualizechart():
+    df3 = df2[df2['Acronym'] == acronym_c]
+    df3['year'] = pd.to_datetime(df3['startDate']).dt.year
+    df3 = df3.groupby(['year', 'activityType']).agg({'ecContribution':'sum'})  # Remove the extra brackets around 'sum'
+    return df3
+
+grants = visualizechart()
+st.write(grants)
+
+option = st.selectbox('Choose an Activity', df3['activityType'].unique())
+st.bar_chart(grants[('ecContribution', 'sum')][option])  # Access the multi-level index using a tuple
+
 conn.close()
