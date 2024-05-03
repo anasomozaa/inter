@@ -90,12 +90,24 @@ def convert_projectcoordinators(pjc_df):
      return pjc_df.to_csv().encode('utf-8')
 st.download_button(label="Project Coordinators CSV",data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv',)
 """Optional"""
-#Display a graph with evolution of received grants of the partners in a coutry according to their activityType.
+
+#Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
 df3 = df2[df2['Acronym'] == acronym_c]
 df3['year']= pd.to_datetime(df3['startDate']).dt.year
 df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
-st.bar_chart(df_grants['activityType'])
-#option = st.selectbox('Choose an option', ['a', 'b', 'c'])
-#st.bar_chart(dataframe1[option])
+
+@st.cache
+def visualizechart():
+    #df = pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+    df3 = df2[df2['Acronym'] == acronym_c]
+    df3['year']= pd.to_datetime(df3['startDate']).dt.year
+    df3 = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
+    return(df3)
+
+grants = visualizechart()
+st.write(grants)
+
+option = st.selectbox('Choose an Activity', df3['activityType'])
+st.bar_chart(grants[option])
 conn.close()
