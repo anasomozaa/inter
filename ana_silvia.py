@@ -76,6 +76,7 @@ st.write(participants)
 df2 = df2[df2['Acronym'] == acronym_c]
 #filter project coordinators: 
 df2['role_coord'] = (df2['role']=='coordinator')*1
+df2 = df2[df2['role'] =! 0]
 pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'role_coord': ['sum']})
 pjc_df = pjc_df.sort_values(by=('shortName'), ascending= True)
 
