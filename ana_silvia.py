@@ -78,5 +78,11 @@ pjc_df = pjc_df.reset_index()
 pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
 st.write(pjc_df, index=False)
+"""Part 5:"""
+#The system shall save the generated datasets (participants, and project coordinators) in anCSV file. (There should be 2 buttons to download data).
+@st.cache      # IMPORTANT: Cache the conversion to prevent computation on every rerun
+def convert_participants(participants):
+     return participants.to_csv().encode('utf-8')
+st.download_button(label="Participants CSV",data=convert_participants(participants), file_name='participants.csv', mime='text/csv',)
 
 conn.close()
