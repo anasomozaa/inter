@@ -108,7 +108,7 @@ def visualizechart():
 grants = visualizechart()
 st.write(grants)
 
-option = st.selectbox('Choose an Activity', grants['activityType'].unique())
+option = st.selectbox('Choose an Activity', grants['activityType'])
 st.bar_chart(grants[option])  # Access the multi-level index using a tuple
 
 conn.close()
