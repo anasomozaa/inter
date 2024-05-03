@@ -53,7 +53,6 @@ def country_to_acronym(countname): #defining a function
     return(value)
 
 acronym_c = country_to_acronym(countname)
-##print('The selected country is:', acronym_c) #calling the function to display to display the acronym
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym
 
 
@@ -66,7 +65,6 @@ def display_dataframe(df2, acronym_c):
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
-##print(participants)
 st.write(participants, index=False)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
