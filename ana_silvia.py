@@ -78,7 +78,7 @@ pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).ag
 pjc_df = pjc_df.reset_index()
 pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
-st.write(pjc_df)
+st.write(pjc_df, index=False)
 #st.write('Project coordinators from', countame)
 #st.write(project_coordinators_df)
 
