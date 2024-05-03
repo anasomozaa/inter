@@ -93,27 +93,16 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 
 #Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
-df3 = df2[df2['Acronym'] == acronym_c]
-df3['year']= pd.to_datetime(df3['startDate']).dt.year
-df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
 
-'''@st.cache
-def visualizechart():
-    df3 = df2[df2['Acronym'] == acronym_c]
-    df3['year']= pd.to_datetime(df3['startDate']).dt.year
-    df3 = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
-    return(df3)
+#df3['year']= pd.to_datetime(df3['startDate']).dt.year
+#df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
 
-grants = visualizechart()
-st.write(grants)
-
-option = st.selectbox('Choose an Activity', df3['activityType'].unique())
-st.bar_chart(grants[('ecContribution', 'sum')][option]) '''
 @st.cache
 def visualizechart():
     df3 = df2[df2['Acronym'] == acronym_c]
     df3['year'] = pd.to_datetime(df3['startDate']).dt.year
-    df3 = df3.groupby(['year', 'activityType']).agg({'ecContribution':'sum'})  # Remove the extra brackets around 'sum'
+    df3 = df3.groupby(['name', 'activityType').agg({'ecContribution':['sum']})
+    df3 = df3.reset_index()
     return df3
 
 grants = visualizechart()
