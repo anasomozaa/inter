@@ -108,7 +108,7 @@ def visualizechart():
 grants = visualizechart()
 st.write(grants)
 
-esto genera problemas
+#esto genera problemas
 #option = st.selectbox('Choose an Activity', grants['activityType'])
 #st.bar_chart(grants[option]) 
 
