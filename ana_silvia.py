@@ -91,9 +91,4 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 """Optional"""
 #Display a graph with evolution of received grants of the partners in a coutry according to their activityType.
 
-
-
-
-
-grouped_df = filtered_df.groupby(['Year', 'ActivityType']).agg({'Grants': 'sum'})
 conn.close()
