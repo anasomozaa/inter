@@ -101,8 +101,8 @@ df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']}
 def visualizechart():
     #df = pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
     df3 = df2[df2['Acronym'] == acronym_c]
-    df3['year']= pd.to_datetime(df3['startDate']).dt.year
-    df3 = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
+    #df3['year']= pd.to_datetime(df3['startDate']).dt.year
+    df3 = df3.groupby(['startDate', 'activityType']).agg({'ecContribution':['sum']})
     return(df3)
 
 grants = visualizechart()
