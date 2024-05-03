@@ -73,15 +73,13 @@ st.write(participants)
 #p INNER JOIN PROJECTS AS pj ON p.projectID = pj.projectID INNER JOIN COUNTRIES AS c on p.country=c.Acronym
 #WHERE p.role='Coordinator' AND c.Country=? ORDER BY p.shortName ASC''', conn, params=[countname])
 
-def project_coordinators_df(df2, acronym_c):
-    pjc = df2[df2['Acronym'] == acronym_c]
-    #filter project coordinators: 
-    df2['role_coord'] = (df2['role']=='coordinator')*1
-    pjc_df = pjc.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'role_coord': ['sum']})
-    pjc_df = pjc_df.sort_values(by=('shortName'), ascending= True)
-    return(pjc_df)
+df2 = df2[df2['Acronym'] == acronym_c]
+#filter project coordinators: 
+df2['role_coord'] = (df2['role']=='coordinator')*1
+pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'role_coord': ['sum']})
+pjc_df = pjc_df.sort_values(by=('shortName'), ascending= True)
 
-st.write(project_coordinators_df(df2,acronym_c))
+st.write(pjc_df)
 #st.write('Project coordinators from', countame)
 #st.write(project_coordinators_df)
 
