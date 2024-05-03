@@ -108,6 +108,6 @@ def visualizechart():
 grants = visualizechart()
 st.write(grants)
 
-option = st.selectbox('Choose an Activity', df3['activityType'])
+option = st.selectbox('Choose an Activity', df3['activityType'].unique())
 st.bar_chart(grants[option])
 conn.close()
