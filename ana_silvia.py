@@ -69,15 +69,12 @@ participants = display_dataframe(df2,acronym_c)
 st.write(participants)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
-#project_coordinators_df= pd.read_sql('''SELECT p.shortName, p.name, p.activityType, pj.projectAcronym FROM PARTICIPANTS AS
-#p INNER JOIN PROJECTS AS pj ON p.projectID = pj.projectID INNER JOIN COUNTRIES AS c on p.country=c.Acronym
-#WHERE p.role='Coordinator' AND c.Country=? ORDER BY p.shortName ASC''', conn, params=[countname])
 
 df2 = df2[df2['Acronym'] == acronym_c]
 #filter project coordinators: 
 df2['role_coord'] = (df2['role']=='coordinator')*1
 pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'role_coord': ['sum']})
-pjc_df = pjc_df.sort_values('shortName')
+pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
 st.write(pjc_df)
 #st.write('Project coordinators from', countame)
