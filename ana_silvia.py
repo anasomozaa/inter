@@ -69,12 +69,12 @@ participants = display_dataframe(df2,acronym_c)
 st.write(participants)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
-
+st.header('Number of Project Coordinators Table for the Country Selected')
 df2 = df2[df2['Acronym'] == acronym_c]
 #filter project coordinators: 
-df2['role_coord'] = (df2['role']=='coordinator')*1
-pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'role_coord': ['sum']})
-pjc_df = pjc_df[pjc_df[('role_coord', 'sum')] > 0]
+df2['Coordinator'] = (df2['role']=='coordinator')*1
+pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'Coordinator': ['sum']})
+pjc_df = pjc_df[pjc_df[('role_coord', 'sum')] > 0] #only visualize those which have been coordinators or not?
 pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
 st.write(pjc_df)
