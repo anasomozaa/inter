@@ -101,14 +101,15 @@ st.text('Graph with evolution of received grants per partners according to activ
 def visualizechart():
     df3 = df2[df2['Acronym'] == acronym_c]
     df3['year'] = pd.to_datetime(df3['startDate']).dt.year
-    df3 = df3.groupby(['name', 'activityType']).agg({'ecContribution':['sum']})
+    df3 = df3.groupby(['name','year', 'activityType']).agg({'ecContribution':['sum']})
     df3 = df3.reset_index()
     return df3
 
 grants = visualizechart()
 st.write(grants)
 
-option = st.selectbox('Choose an Activity', grants['activityType'])
-st.bar_chart(grants[option])  # Access the multi-level index using a tuple
+esto genera problemas
+#option = st.selectbox('Choose an Activity', grants['activityType'])
+#st.bar_chart(grants[option]) 
 
 conn.close()
