@@ -55,7 +55,7 @@ def country_to_acronym(countname): #defining a function
 acronym_c = country_to_acronym(countname)
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym
 
-
+st.text('Table of Partner Contributions per Country')
 ### @st.cache
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
@@ -68,7 +68,7 @@ participants = display_dataframe(df2,acronym_c)
 st.write(participants, index=False)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
-st.header('Number of Project Coordinators Table for the Country Selected')
+st.text('Table of Project Coordinators per Country')
 df2 = df2[df2['Acronym'] == acronym_c]
 #filter project coordinators: 
 df2['Coordinator'] = (df2['role']=='coordinator')*1
@@ -78,7 +78,8 @@ pjc_df = pjc_df.reset_index()
 pjc_df = pjc_df.sort_values('shortName') #ordered by shortName
 
 st.write(pjc_df, index=False)
-"""Part 5:"""
+
+st.text('Download the Data Below')
 #The system shall save the generated datasets (participants, and project coordinators) in anCSV file. (There should be 2 buttons to download data).
 @st.cache      # IMPORTANT: Cache the conversion to prevent computation on every rerun
 def convert_participants(participants):
