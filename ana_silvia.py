@@ -84,5 +84,9 @@ st.write(pjc_df, index=False)
 def convert_participants(participants):
      return participants.to_csv().encode('utf-8')
 st.download_button(label="Participants CSV",data=convert_participants(participants), file_name='participants.csv', mime='text/csv',)
+@st.cache      # IMPORTANT: Cache the conversion to prevent computation on every rerun
+def convert_projectcoordinators(pjc_df):
+     return pjc_df.to_csv().encode('utf-8')
+st.download_button(label="Project Coordinators CSV",data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv',)
 
 conn.close()
