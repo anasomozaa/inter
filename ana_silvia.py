@@ -12,7 +12,7 @@ import numpy as np
 #import matplotlib.pyplot
 import sqlite3
 from sqlite3 import connect
-#import streamlit as st
+import streamlit as st
 
 conn= connect('ecsel_database.db')
 
