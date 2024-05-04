@@ -114,8 +114,6 @@ y_min = 0
 y_max = 70000000
 
 # Plot the graph with customized y-axis range
-st.bar_chart(df_grants.set_index('activityType'), use_container_width=True, height=500, width=700, 
-             max_width=1000, min_width=500, max_height=800, min_height=400)
-
+st.bar_chart(df_grants.set_index('activityType'))
 
 conn.close()
