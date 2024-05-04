@@ -93,6 +93,8 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 
 """Optional"""
 
+import streamlit as st
+
 # Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
 
@@ -107,6 +109,7 @@ y_min = 0
 y_max = 70000000
 
 # Plot the graph with customized y-axis range
-st.bar_chart(df_grants.set_index('activityType'), y_axis=(y_min, y_max))
+st.bar_chart(df_grants.set_index('activityType'))
+
 
 conn.close()
