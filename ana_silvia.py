@@ -101,12 +101,13 @@ st.text('Graph with evolution of received grants per partners according to activ
 def visualizechart():
     df3 = df2[df2['Acronym'] == acronym_c]
     df3['year'] = pd.to_datetime(df3['startDate']).dt.year
-    df3 = df3.groupby(['name','year', 'activityType']).agg({'ecContribution':['sum']})
+    df3 = df3.groupby(['name','year']).agg({'ecContribution':['sum']})
     df3 = df3.reset_index()
     return df3
 
 grants = visualizechart()
 st.write(grants)
+st.bar_chart(grants)
 
 #esto genera problemas
 #option = st.selectbox('Choose an Activity', grants['activityType'])
