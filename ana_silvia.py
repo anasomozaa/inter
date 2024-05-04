@@ -14,9 +14,6 @@ from sqlite3 import connect
 import streamlit as st
 from PIL import Image
 
-import matplotlib
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 image = Image.open('Logo-KDT-JU.webp')
 st.image(image)
@@ -99,16 +96,18 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 #Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
 
-df_country=df2[df2['Acronym'] == acronym_c] #filter for the selected country
-df_grants= df_country.groupby('activityType')['ecContribution'].sum().reset_index() #group by activityType and sum the contributions
 
-#plot the graph: 
-plt.figure(figsize=(10,6))
-sns.barplot(x='activityType', y='ecContribution', data=df_grants)
-plt.title('Evolution of Received Grants by Activity Type in ' + countname)
-plt.xlabel('Activity Type')
-plt.ylabel('Received Grants')
+# Filter data for the selected country
+df_country = df2[df2['Acronym'] == acronym_c]
 
-st.pyplot(plt) #display the graph 
+# Group by activityType and sum the contributions
+df_grants = df_country.groupby('activityType')['ecContribution'].sum().reset_index()
+
+# Plot the graph using Streamlit's bar_chart function
+st.bar_chart(df_grants.set_index('activityType'))
+
+# Add title and labels
+st.pyplot(plt) 
+ 
 
 conn.close()
