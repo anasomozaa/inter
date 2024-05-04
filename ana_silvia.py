@@ -14,6 +14,7 @@ from sqlite3 import connect
 import streamlit as st
 from PIL import Image
 
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 
