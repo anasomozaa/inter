@@ -108,7 +108,7 @@ def visualizechart():
 
 grants = visualizechart()
 st.write(grants)
-st.bar_chart(chart_data, x='year', y='ecContribution')
+st.bar_chart(grants, x='year', y=('ecContribution', 'sum'))
 
 #esto genera problemas
 #option = st.selectbox('Choose an Activity', grants['activityType'])
