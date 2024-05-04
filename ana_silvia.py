@@ -97,9 +97,7 @@ st.text('Graph with evolution of received grants per partners according to activ
 #df3['year']= pd.to_datetime(df3['startDate']).dt.year
 #df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
 
-df3 = df2[df2['Acronym'] == acronym_c]
-df3['year'] = pd.to_datetime(df3['startDate']).dt.year
-chart_data = pd.DataFrame(df3)
+chart_data = participants
 chart_data = chart_data.groupby(['name','year']).agg({'ecContribution':['sum']})
     #df3 = df3.reset_index()
 st.write(chart_data)
