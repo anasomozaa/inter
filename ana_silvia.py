@@ -97,6 +97,7 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 st.text('Graph with evolution of received grants per partners according to activityType')
 
 
+
 # Filter data for the selected country
 df_country = df2[df2['Acronym'] == acronym_c]
 
@@ -106,8 +107,6 @@ df_grants = df_country.groupby('activityType')['ecContribution'].sum().reset_ind
 # Plot the graph using Streamlit's bar_chart function
 st.bar_chart(df_grants.set_index('activityType'))
 
-# Add title and labels
-st.pyplot(plt) 
  
 
 conn.close()
