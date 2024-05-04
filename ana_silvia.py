@@ -89,10 +89,24 @@ st.download_button(label="Participants CSV",data=convert_participants(participan
 def convert_projectcoordinators(pjc_df):
      return pjc_df.to_csv().encode('utf-8')
 st.download_button(label="Project Coordinators CSV",data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv',)
+
 """Optional"""
 
 #Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
+import matplotlib.pyplot as plt
+import seaborn as sns 
 
+df_country=df2[df2['Acronym'] == acronoym_c] #filter for the selected country
+df_grants= df_country.groupby('activityType')['ecContribution].sum().reset_index() #group by activityType and sum the contributions
+
+#plot the graph: 
+plt.figure(figsize=(10,6))
+sns.barplot(x='activityType', y='ecContribution', data=df_grants)
+plt.title('Evolution of Received Grants by Activity Type in ' + countname)
+plt.xlabel('Activity Type')
+plt.ylabel('Received Grants')
+
+st.pyplot(plt) #display the graph 
 
 conn.close()
