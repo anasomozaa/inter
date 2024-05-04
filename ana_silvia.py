@@ -94,6 +94,8 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 
 #Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.text('Graph with evolution of received grants per partners according to activityType')
+
+pip install matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns 
 
