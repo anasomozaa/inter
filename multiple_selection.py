@@ -106,6 +106,8 @@ if selected_countries:
         st.download_button(label=f"Project Coordinators CSV - {country}", data=convert_project_coordinators(pjc_df), 
                            file_name=f'project_coordinators_{country}.csv', mime='text/csv')
 
+'''Optional'''
+
 # Display a graph with evolution of received grants of the partners in a country according to their activityType
 st.text('Graph with evolution of received grants per partners according to activityType')
 if selected_countries:
