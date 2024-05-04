@@ -102,9 +102,8 @@ df3['year'] = pd.to_datetime(df3['startDate']).dt.year
 chart_data = pd.DataFrame(df3)
 chart_data = chart_data.groupby(['name','year']).agg({'ecContribution':['sum']})
     #df3 = df3.reset_index()
-chart_data['year'] = chart_data['year'].astype(str)
 st.write(chart_data)
-st.bar_chart(chart_data, x='year', y=('ecContribution', 'sum'))
+st.bar_chart(chart_data)
 
 #esto genera problemas
 #option = st.selectbox('Choose an Activity', grants['activityType'])
