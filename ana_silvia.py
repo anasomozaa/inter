@@ -98,7 +98,6 @@ st.text('Graph with evolution of received grants per partners according to activ
 #df_grants = df3.groupby(['year', 'activityType']).agg({'ecContribution':['sum']})
 
 chart_data = participants
-chart_data = chart_data.groupby(['name','year']).agg({'ecContribution':['sum']})
     #df3 = df3.reset_index()
 st.write(chart_data)
 st.bar_chart(chart_data)
