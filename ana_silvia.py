@@ -41,7 +41,7 @@ country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark
 'HR', 'Italy': 'IT', 'Cyprus': 'CY', 'Latvia': 'LV', 'Lithuania': 'LT','Luxembourg': 'LU',
 'Hungary': 'HU', 'Malta': 'MT', 'Netherlands': 'NL', 'Austria': 'AT', 'Poland': 'PL', 'Portugal':
 'PT','Romania': 'RO', 'Slovenia': 'SI', 'Slovakia': 'SK', 'Finland': 'FI', 'Sweden': 'SE'}
-countname = st.selectbox('Choose a Country', sorted(country_acronyms.keys())) #input by the user of the name of the country
+countname = st.selectbox('Choose a Country', sorted(country_acronyms.keys())) #input by the user of the name of the country or countries
 ##countname = input('Choose a Country') #input by the user of the name of the country
 def country_to_acronym(countname): #defining a function
   found = False #setting parameter = False, when True it is when the acronym is found.
