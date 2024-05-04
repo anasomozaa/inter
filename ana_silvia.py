@@ -98,7 +98,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns 
 
 df_country=df2[df2['Acronym'] == acronoym_c] #filter for the selected country
-df_grants= df_country.groupby('activityType')['ecContribution].sum().reset_index() #group by activityType and sum the contributions
+df_grants= df_country.groupby('activityType')['ecContribution'].sum().reset_index() #group by activityType and sum the contributions
 
 #plot the graph: 
 plt.figure(figsize=(10,6))
