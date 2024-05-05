@@ -104,9 +104,6 @@ df_country = df2[df2['Acronym'] == acronym_c]
 # Group by activityType and sum the contributions
 df_grants = df_country.groupby('activityType')['ecContribution'].sum().reset_index()
 
-# Set y-axis range
-y_min = 0
-y_max = 70000000
 
 # Plot the graph with customized y-axis range
 st.bar_chart(df_grants.set_index('activityType'))
