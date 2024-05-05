@@ -96,7 +96,7 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 import streamlit as st
 
 # Display a graph with evolution of received grants of the partners in a country according to their activityType.
-st.title('Evolution of received grants per partners in {} according to activityType', countname)
+st.title('Evolution of received grants per partners according to activityType')
 
 # Filter data for the selected country
 df_country = df2[df2['Acronym'] == acronym_c]
