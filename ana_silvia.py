@@ -102,7 +102,7 @@ st.text('Graph with evolution of received grants per partners according to activ
 df_country = df2[df2['Acronym'] == acronym_c]
 
 # Group by activityType and sum the contributions
-df_grants = df_country.groupby('activityType')['ecContribution'].sum().reset_index()
+df_grants = df_country.groupby('activityType', 'year')['ecContribution'].sum().reset_index()
 
 
 # Plot the graph with customized y-axis range
