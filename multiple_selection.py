@@ -93,56 +93,21 @@ def convert_projectcoordinators(pjc_df):
     return pjc_df.to_csv().encode('utf-8')
 st.download_button(label="Project Coordinators CSV", data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv')
 
-"""Optional"""
 
+# Optional 
 import streamlit as st
 
-# Display a graph with evolution of received grants of the partners in a country according to their activityType.
-st.text('Graph with evolution of received grants per partners in {countname} according to activityType')
+for country in countnames:
+    st.subheader(f"Total Contributions Evolution for {country}")
+    selected_country_data = df2[df2['Country'] == country]
 
-# Filter data for the selected countries, years, and activity types
-df_country = df2[df2['Acronym'].isin(acronym_c) & df2['year'].isin(years) & df2['activityType'].isin(activity_types)]
+    # Group by year and activity type to get total contributions
+    contributions_by_year_activity = selected_country_data.groupby(['year', 'activityType'])['ecContribution'].sum().unstack()
 
-# Group by activityType, country, and year and sum the contributions
-df_grants = df_country.groupby(['activityType', 'Country', 'year'])['ecContribution'].sum().reset_index()
+    # Plotting
+    st.line_chart(contributions_by_year_activity)
 
-# Plot the graph
-st.bar_chart(df_grants, x='activityType', y='ecContribution', color='Country', width=0.6)
 
 conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
