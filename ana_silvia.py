@@ -95,6 +95,7 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 
 import streamlit as st
 
+
 # Display a graph with evolution of received grants of the partners in a country according to their activityType.
 st.title('Evolution of received grants per partners according to activityType')
 
@@ -110,8 +111,5 @@ for activity_type in df_grants['activityType'].unique():
     df_activity = df_grants[df_grants['activityType'] == activity_type]
     chart_data = df_activity.pivot(index='year', columns='activityType', values='ecContribution')
     st.line_chart(chart_data)
-
-
-
 
 conn.close()
