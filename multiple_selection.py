@@ -62,19 +62,19 @@ st.write('The selected years are:', ', '.join(selected_years))  # Display select
 st.write('The selected activity types are:', ', '.join(selected_activity_types))  # Display selected activity types as a string
 
 st.text('Table of Partner Contributions per Country')
-def display_dataframe(df2, acronyms):
-    df2 = df2[df2['Acronym'].isin(acronyms)]
+def display_dataframe(df2, acronyms, activity_types):
+    df2 = df2[df2['Acronym'].isin(acronyms) & df2['activityType'].isin(activity_types)]
     df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
     df2_part = df2_part.reset_index()
     df2_part = df2_part.sort_values(by=('ecContribution', 'sum'), ascending=False)  # Sorting by sum of ecContribution in descending order
     return df2_part
 
-participants = display_dataframe(df2, acronym_c)
+participants = display_dataframe(df2, acronym_c, activity_types)
 st.write(participants, index=False)
 
 # Part 4: generate a new project dataframe with project coordinators from the selected countries and order it in ascending order by 'shortName'
 st.text('Table of Project Coordinators per Country')
-df2 = df2[df2['Acronym'].isin(acronym_c)]
+df2 = df2[df2['Acronym'].isin(acronym_c) & df2['activityType'].isin(activity_types)]
 df2['Coordinator'] = (df2['role'] == 'coordinator') * 1
 pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'Coordinator': ['sum']})
 pjc_df = pjc_df.reset_index()
@@ -103,11 +103,11 @@ st.text('Graph with evolution of received grants per partners according to activ
 # Filter data for the selected countries, years, and activity types
 df_country = df2[df2['Acronym'].isin(acronym_c) & df2['year'].isin(years) & df2['activityType'].isin(activity_types)]
 
-# Group by activityType and sum the contributions
-df_grants = df_country.groupby('activityType')['ecContribution'].sum().reset_index()
+# Group by activityType, country, and year and sum the contributions
+df_grants = df_country.groupby(['activityType', 'Country', 'year'])['ecContribution'].sum().reset_index()
 
-# Plot the graph with customized y-axis range
-st.bar_chart(df_grants.set_index('activityType'))
+# Plot the graph
+st.bar_chart(df_grants, x='activityType', y='ecContribution', color='Country', width=0.6)
 
 conn.close()
 
