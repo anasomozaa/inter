@@ -40,10 +40,9 @@ country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark
 'Hungary': 'HU', 'Malta': 'MT', 'Netherlands': 'NL', 'Austria': 'AT', 'Poland': 'PL', 'Portugal':
 'PT','Romania': 'RO', 'Slovenia': 'SI', 'Slovakia': 'SK', 'Finland': 'FI', 'Sweden': 'SE'}
 countname = st.selectbox('Choose a Country', sorted(country_acronyms.keys()))
-#countname = input('Choose a Country')
 def country_to_acronym(countname):
   if countname in country_acronyms.keys(): #if the country name is in the key of the dictionary
-    value = country_acronyms[countname]
+    value = country_acronyms[countname] #the value returned is the acronym
   return(value)
 
 acronym_c = country_to_acronym(countname)
