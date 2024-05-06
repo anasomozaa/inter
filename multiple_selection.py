@@ -95,11 +95,13 @@ st.download_button(label="Project Coordinators CSV", data=convert_projectcoordin
 
 
 # Optional 
-import streamlit as st
+
 
 for country in countnames:
     st.subheader(f"Total Contributions Evolution for {country}")
     selected_country_data = df2[df2['Country'] == country]
+    selected_country_data['year'] = selected_country_data['year'].astype(int)
+    selected_country_data['year'] = selected_country_data['year'].astype(str)
 
     # Group by year and activity type to get total contributions
     contributions_by_year_activity = selected_country_data.groupby(['year', 'activityType'])['ecContribution'].sum().unstack()
