@@ -94,10 +94,6 @@ def convert_projectcoordinators(pjc_df):
     return pjc_df.to_csv().encode('utf-8')
 st.download_button(label="Project Coordinators CSV", data=convert_projectcoordinators(pjc_df), file_name='projectcoordinators.csv', mime='text/csv')
 
-
-# Optional 
-
-
 for country in countnames:
     st.subheader(f"Total Contributions Evolution for {country}")
     selected_country_data = df2[df2['Country'] == country]
