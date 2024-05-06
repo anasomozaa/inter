@@ -102,8 +102,6 @@ df_country['year'] = df_country['year'].astype(str)
 df_grants = df_country.groupby(['activityType', 'year'])['ecContribution'].sum().reset_index()
 # Pivot the data
 pivot_grants = df_grants.pivot(index='year', columns='activityType', values='ecContribution')
-# Plot the graph
-st.line_chart(pivot_grants)
 st.bar_chart(pivot_grants)
 
 
