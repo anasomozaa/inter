@@ -94,9 +94,8 @@ st.download_button(label="Project Coordinators CSV",data=convert_projectcoordina
 # Display a graph with the evolution of received grants of the partners in a country according to their activityType.
 st.title(f'Evolution of received grants per partners according to Activity Type - {acronym_c}')
 
-# Filter data for the selected country
 df_country = df2[df2['Acronym'] == acronym_c]
-# Convert year to string type
+# Convert year to whole numbers by first converting into an integer and then into a string 
 df_country['year'] = df_country['year'].astype(int)
 df_country['year'] = df_country['year'].astype(str)
 # Group by activityType and year, then sum the contributions
@@ -105,6 +104,7 @@ df_grants = df_country.groupby(['activityType', 'year'])['ecContribution'].sum()
 pivot_grants = df_grants.pivot(index='year', columns='activityType', values='ecContribution')
 # Plot the graph
 st.line_chart(pivot_grants)
+st.bar_chart(pivot_grants)
 
 
 conn.close()
