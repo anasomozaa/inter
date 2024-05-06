@@ -39,19 +39,12 @@ country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark
 'HR', 'Italy': 'IT', 'Cyprus': 'CY', 'Latvia': 'LV', 'Lithuania': 'LT','Luxembourg': 'LU',
 'Hungary': 'HU', 'Malta': 'MT', 'Netherlands': 'NL', 'Austria': 'AT', 'Poland': 'PL', 'Portugal':
 'PT','Romania': 'RO', 'Slovenia': 'SI', 'Slovakia': 'SK', 'Finland': 'FI', 'Sweden': 'SE'}
-countname = st.selectbox('Choose a Country', sorted(country_acronyms.keys())) #input by the user of the name of the country or countries
-##countname = input('Choose a Country') #input by the user of the name of the country
-def country_to_acronym(countname): #defining a function
-  found = False #setting parameter = False, when True it is when the acronym is found.
-  while found == False: #while acronym is not found
-    if countname in country_acronyms.keys(): #if the country name is in the key of the dictionary
-      value = country_acronyms[countname] #getting the acronym associated with the key (name of the country)
-      found = True #set parameter to trye
-    else:
-      st.write("Not a country on the list, try again: ") #if the country doesn't exist in the database it will ask the user again to try again
-      ##print("Not a country on the list, try again: ") #if the country doesn't exist in the database it will ask the user again to try again
-      found = False
-    return(value)
+countname = st.selectbox('Choose a Country', sorted(country_acronyms.keys()))
+#countname = input('Choose a Country')
+def country_to_acronym(countname):
+  if countname in country_acronyms.keys(): #if the country name is in the key of the dictionary
+    value = country_acronyms[countname]
+  return(value)
 
 acronym_c = country_to_acronym(countname)
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym
