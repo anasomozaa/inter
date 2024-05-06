@@ -104,6 +104,6 @@ df_grants = df_country.groupby(['activityType', 'year'])['ecContribution'].sum()
 pivot_grants = df_grants.pivot(index='year', columns='activityType', values='ecContribution')
 st.bar_chart(pivot_grants)
 option = st.selectbox('Choose to see the specific activity', df2['activityType'].unique())
-st.bar_chart(pivot_grants[option])
+st.bar_chart(pivot_grants[option], color = 'pink')
 
 conn.close()
