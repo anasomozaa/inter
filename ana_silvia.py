@@ -97,6 +97,7 @@ st.title(f'Evolution of received grants per partners according to Activity Type 
 # Filter data for the selected country
 df_country = df2[df2['Acronym'] == acronym_c]
 # Convert year to string type
+df_country['year'] = df_country['year'].astype(int)
 df_country['year'] = df_country['year'].astype(str)
 # Group by activityType and year, then sum the contributions
 df_grants = df_country.groupby(['activityType', 'year'])['ecContribution'].sum().reset_index()
