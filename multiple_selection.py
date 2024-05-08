@@ -74,7 +74,7 @@ st.write(participants, index=False)
 
 # Part 4: generate a new project dataframe with project coordinators from the selected countries and order it in ascending order by 'shortName'
 st.text('Table of Project Coordinators per Country')
-df2 = df2[df2['Acronym'].isin(acronym_c) & df2['activityType'].isin(activity_types) & df2['year'].isin(selected_years)]
+df2 = df2[df2['Acronym'].isin(acronym_c) & df2['activityType'].isin(activity_types)]
 df2['Coordinator'] = (df2['role'] == 'coordinator') * 1
 pjc_df = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'Coordinator': ['sum']})
 pjc_df = pjc_df[pjc_df[('Coordinator', 'sum')] > 0].reset_index() #only visualize those which have been coordinators
